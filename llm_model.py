@@ -18,8 +18,6 @@ class llm_model_class:
     def __init__(self, index_name=INDEX_NAME):
         PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
         pc = Pinecone(api_key=PINECONE_API_KEY)
-        if(index_name in pc.list_indexes().names()):
-            pc.delete_index(index_name)
         if index_name not in pc.list_indexes().names():
             pc.create_index(
                 name=index_name,
